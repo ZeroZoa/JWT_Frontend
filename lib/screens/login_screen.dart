@@ -1,0 +1,185 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:jwt_frontend/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  static const String routeName = 'login';
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _isLoading = false;
+  bool _obscurePassword = true;
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _handleLogin() async{
+    //사용자가 제출한 로그인폼 확인
+    if(!_formKey.currentState!.validate()){
+      return;
+    }
+
+    if(!mounted) return;
+    setState(() {
+      _isLoading = false;
+    });
+
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+
+    final success = await authProvider.login(
+      _emailController.text.trim(),
+      _passwordController.text.trim(),
+    );
+
+    if(!mounted) return;
+    setState(() {
+      _isLoading = false;
+    });
+
+    if(success) {
+      context.go('/');
+    } else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+        content: Text('로그인 실패: 이메일 또는 비밀번호를 확인해주세요.'),
+        backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 400),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(32.0),
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Text(
+                    'JWT Server 로그인',
+                    style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 40),
+
+                  // 이메일 입력 필드
+                  _buildTextField(
+                    controller: _emailController,
+                    label: '이메일',
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) {
+                      if (value == null || value.trim().isEmpty) {
+                        return '이메일을 입력해주세요.';
+                      }
+                      // 간단한 이메일 형식 검사
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 20),
+
+                  // 비밀번호 입력 필드
+                  _buildTextField(
+                    controller: _passwordController,
+                    label: '비밀번호',
+                    obscureText: _obscurePassword,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.grey,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return '비밀번호를 입력해주세요.';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 30),
+
+                  // 로그인 버튼
+                  ElevatedButton(
+                    onPressed: _isLoading ? null : _handleLogin,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      backgroundColor: Color(0xFF01AD70),
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: _isLoading
+                        ? const SizedBox(
+                      width: 20, height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2, valueColor: AlwaysStoppedAnimation<Color>(Colors.white)),
+                    )
+                        : const Text('로그인', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  ),
+                  const SizedBox(height: 16),
+                  // 회원가입 링크
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text('계정이 없으신가요? ', style: TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w500)),
+                      TextButton(
+                        onPressed: () => context.go('/signup'), // SignupScreen으로 이동
+                        child: const Text('회원가입', style: TextStyle(color: Color(0xFF01AD70), fontSize: 15, fontWeight: FontWeight.w600)),
+                      ),
+                    ]
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    TextInputType keyboardType = TextInputType.text,
+    bool obscureText = false,
+    String? Function(String?)? validator,
+    Widget? suffixIcon,
+  }) {
+    return TextFormField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+        suffixIcon: suffixIcon,
+      ),
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+      validator: validator,
+    );
+  }
+}
