@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jwt_frontend/screens/reset_password_screen.dart';
 import 'package:provider/provider.dart';
 
 // ✅ 실제 파일 경로에 맞게 import 해주세요
@@ -87,6 +88,10 @@ final GoRouter _router = GoRouter(
       builder: (context, state) => const Scaffold(
         body: Center(child: Text("홈 화면 (로그인 성공)")),
       ),
+    ),
+    GoRoute(
+      path: '/reset-password',
+      builder: (context, state) => const ResetPasswordScreen(),
     ),
   ],
 );

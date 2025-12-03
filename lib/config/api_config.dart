@@ -26,6 +26,7 @@ class _MembersApi {
   String get login => '$_path/login';
   String get logout => '$_path/logout';
   String get reissue => '$_path/reissue';
+  String get resetPassword => '$_path/reset-password';
 }
 
 class _EmailApi {

@@ -159,6 +159,7 @@ class _SignupScreenState extends State<SignupScreen> {
       return;
     }
 
+    FocusScope.of(context).unfocus();
     setState(()  => _isLoading = true);
 
     try{
@@ -223,11 +224,23 @@ class _SignupScreenState extends State<SignupScreen> {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 450), // 웹 최적화 너비 제한
             child: Card(
-              elevation: 4,
+              elevation: 0,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               color: Colors.white,
-              child: Padding(
+              child: Container(
                 padding: const EdgeInsets.all(32),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromRGBO(158, 158, 158, 0.2),
+                      spreadRadius: 2,
+                      blurRadius: 10,
+                      offset: Offset(0, 1),
+                    ),
+                  ],
+                ),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -239,6 +252,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
+
                       const SizedBox(height: 32),
 
                       // 1. 이메일 입력 & 인증 요청
@@ -257,7 +271,9 @@ class _SignupScreenState extends State<SignupScreen> {
                               onFieldSubmitted: (_) => _sendVerificationCode(),
                             ),
                           ),
+
                           const SizedBox(width: 8),
+
                           SizedBox(
                             height: 48,
                             child: ElevatedButton(
@@ -292,19 +308,16 @@ class _SignupScreenState extends State<SignupScreen> {
                               ),
                             ),
                             const SizedBox(width: 8),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8),
-                              child: SizedBox(
-                                height: 48,
-                                child: ElevatedButton(
-                                  onPressed: (_isVerified || _isLoading) ? null : _checkVerificationCode,
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: _isVerified ? Colors.grey : const Color(0xFF01AD70),
-                                    foregroundColor: Colors.white,
-                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                                  ),
-                                  child: Text(_isVerified ? '완료' : '확인'),
+                            SizedBox(
+                              height: 48,
+                              child: ElevatedButton(
+                                onPressed: (_isVerified || _isLoading) ? null : _checkVerificationCode,
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: _isVerified ? Colors.grey : const Color(0xFF01AD70),
+                                  foregroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                                 ),
+                                child: Text(_isVerified ? '완료' : '확인'),
                               ),
                             ),
                           ],
@@ -327,6 +340,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         textInputAction: TextInputAction.next,
                         onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_pwConfirmFocus),
                       ),
+
                       const SizedBox(height: 16),
 
                       // 4. 비밀번호 확인
@@ -344,6 +358,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         textInputAction: TextInputAction.next,
                         onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_nicknameFocus),
                       ),
+
                       const SizedBox(height: 16),
 
                       // 닉네임
@@ -391,7 +406,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                 ),
-              ),
+              )
             ),
           ),
         ),
