@@ -44,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
     String? token = await _storage.read(key: 'accessToken');
 
     if (token == null) {
-      // 토큰이 없으면 로그인 페이지로 튕겨내기
+      // 토큰이 없으면 로그인 페이지로 이동
       await _handleUnauthorized();
       throw Exception("로그인 토큰이 없습니다.");
     }
