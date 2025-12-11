@@ -14,7 +14,7 @@ class AuthService {
   }
 
   Future<String> login(String email, String password) async {
-    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.members.login}');
+    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.auth.login}');
     try {
       final response = await http.post(
         url,
@@ -63,7 +63,7 @@ class AuthService {
 
 
   Future<String> reissueToken() async {
-    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.members.reissue}');
+    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.auth.reissue}');
 
     try {
       final response = await http.post(
@@ -83,7 +83,7 @@ class AuthService {
   }
 
   Future<void> logout(String accessToken) async {
-    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.members.logout}');
+    final url = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.auth.logout}');
 
     try {
       await http.post(

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jwt_frontend/screens/main_screen.dart';
 import 'package:jwt_frontend/screens/reset_password_screen.dart';
 import 'package:provider/provider.dart';
 
-// ✅ 실제 파일 경로에 맞게 import 해주세요
 import 'providers/auth_provider.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
 
 
 final GoRouter _router = GoRouter(
-  initialLocation: '/login', // 앱 실행 시 첫 화면 (로그인)
+  initialLocation: '/', // 앱 실행 시 첫 화면 (로그인)
   routes: [
     // 로그인 화면
     GoRoute(
@@ -85,9 +85,7 @@ final GoRouter _router = GoRouter(
     // 홈 화면 (로그인 성공 후 이동)
     GoRoute(
       path: '/',
-      builder: (context, state) => const Scaffold(
-        body: Center(child: Text("홈 화면 (로그인 성공)")),
-      ),
+      builder: (context, state) => const MainScreen(),
     ),
     GoRoute(
       path: '/reset-password',

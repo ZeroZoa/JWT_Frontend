@@ -15,6 +15,7 @@ class ApiConfig{
   //API 모음
   static const _MembersApi members = _MembersApi();
   static const _EmailApi email = _EmailApi();
+  static const _AuthApi auth = _AuthApi();
 }
 
 class _MembersApi {
@@ -23,9 +24,7 @@ class _MembersApi {
   static const String _path = '/api/members';
 
   String get signup => '$_path/signup';
-  String get login => '$_path/login';
-  String get logout => '$_path/logout';
-  String get reissue => '$_path/reissue';
+  String get myinfo => '$_path/myinfo';
   String get resetPassword => '$_path/reset-password';
 }
 
@@ -34,6 +33,17 @@ class _EmailApi {
 
   static const String _path = '/api/email';
 
-  String get sendVerificationCode => '$_path/send-verification-code';
+  String get sendSignupVerificationCode => '$_path/send-signup-verification-code';
+  String get sendPasswordResetVerificationCode => '$_path/send-password-reset-verification-code';
   String get checkVerificationCode => '$_path/check-verification-code';
+}
+
+class _AuthApi {
+  const _AuthApi();
+
+  static const String _path = '/api/auth';
+
+  String get login => '$_path/login';
+  String get logout => '$_path/logout';
+  String get reissue => '$_path/reissue';
 }

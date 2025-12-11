@@ -62,6 +62,32 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  // Future<void> _handleLogin() async {
+  //   if (_formKey.currentState!.validate()) {
+  //     FocusScope.of(context).unfocus(); // 키보드 내리기
+  //
+  //     final authProvider = Provider.of<AuthProvider>(context, listen: false);
+  //
+  //     // 로그인 요청
+  //     final isSuccess = await authProvider.login(
+  //         _emailController.text,
+  //         _passwordController.text
+  //     );
+  //
+  //     if (isSuccess) {
+  //       if (!mounted) return;
+  //
+  //       context.go('/');
+  //
+  //     } else {
+  //       if (!mounted) return;
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         const SnackBar(content: Text('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.')),
+  //       );
+  //     }
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -84,7 +84,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
     setState(() => _isLoading = true);
     try{
-      final uri = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.email.sendVerificationCode}');
+      final uri = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.email.sendSignupVerificationCode}');
 
       final response = await http.post(
         uri,
@@ -190,7 +190,7 @@ class _SignupScreenState extends State<SignupScreen> {
   Future<void> _performAutoLogin() async {
     try{
       final response = await http.post(
-        Uri.parse('${ApiConfig.baseUrl}${ApiConfig.members.login}'),
+        Uri.parse('${ApiConfig.baseUrl}${ApiConfig.auth.login}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
           'email': _emailController.text.trim(),

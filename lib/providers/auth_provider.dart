@@ -1,26 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 
 import '../services/auth_service.dart';
 
 class AuthProvider with ChangeNotifier{
   final AuthService _authService = const AuthService();
+  final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   String? _accessToken;
+  String? get accessToken => _accessToken;
 
   bool get isLoggedIn => _accessToken != null;
-  String? get accessToken => _accessToken;
+
 
   Future<bool> login(String email, String password) async {
     try {
       final token = await _authService.login(email, password);
 
       _accessToken = token;
+      await _storage.write(key: 'accessToken', value: token);
+
       notifyListeners();
       return true;
     } catch(e) {
-      print(e);
+      debugPrint('로그인 오류: $e');
       return false;
     }
   }
@@ -30,7 +35,7 @@ class AuthProvider with ChangeNotifier{
       await _authService.signup(email, password, nickname, verificationToken);
       return true;
     }catch (e) {
-      print(e);
+      debugPrint('회원가입 오류: $e');
       return false;
     }
   }
@@ -40,8 +45,9 @@ class AuthProvider with ChangeNotifier{
       final token = await _authService.reissueToken();
 
       _accessToken = token;
+      await _storage.write(key: 'accessToken', value: token);
     }catch(e) {
-      print(e);
+      debugPrint('로그인 오류: $e');
       _accessToken = null;
     }
 
@@ -53,10 +59,16 @@ class AuthProvider with ChangeNotifier{
       try {
         await _authService.logout(_accessToken!);
       } catch (e) {
-        // 서버에 로그아웃 요청 실패(네트워크 오류 등)는 무시하고 로그만 남깁니다.
         if (kDebugMode) {
           debugPrint('클라이언트 로그아웃은 성공, 서버 RT 무효화 요청 실패: $e');
         }
+      }
+    }
+    try {
+      await _storage.deleteAll();
+    } catch (e) {
+      if (kDebugMode) {
+        debugPrint('SecureStorage 삭제 중 오류 발생: $e');
       }
     }
     _accessToken = null;

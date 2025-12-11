@@ -81,7 +81,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
     setState(() => _isLoading = true);
     try{
-      final uri = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.email.sendVerificationCode}');
+      final uri = Uri.parse('${ApiConfig.baseUrl}${ApiConfig.email.sendPasswordResetVerificationCode}');
 
       final response = await http.post(
         uri,
@@ -160,7 +160,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     setState(()  => _isLoading = true);
 
     try{
-      final response = await http.post(
+      final response = await http.put(
         Uri.parse('${ApiConfig.baseUrl}${ApiConfig.members.resetPassword}'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({
