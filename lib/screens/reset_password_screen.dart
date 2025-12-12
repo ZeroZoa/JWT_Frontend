@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -182,7 +182,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
       }
     } catch (e) {
       _showSnackBar('서버 연결 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.', isError: true);
-      print('Find Password Error: $e');
+      if (kDebugMode) {
+        print('Find Password Error: $e');
+      }
     } finally{
       if(mounted) setState(() => _isLoading = false);
     }

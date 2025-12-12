@@ -2,76 +2,63 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-
 import '../services/auth_service.dart';
 
-class AuthProvider with ChangeNotifier{
+class AuthProvider with ChangeNotifier {
   final AuthService _authService = const AuthService();
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
-  String? _accessToken;
-  String? get accessToken => _accessToken;
+  bool _isLoggedIn = false;
+  bool _isLoading = false;
+  bool _isAuthenticated = false;
 
-  bool get isLoggedIn => _accessToken != null;
+  bool get isLoggedIn => _isLoggedIn;
+  bool get isLoading => _isLoading;
+  bool get isAuthenticated => _isAuthenticated;
 
+  Future<void> login(String email, String password) async {
+    _isLoading = true;
+    notifyListeners();
 
-  Future<bool> login(String email, String password) async {
     try {
-      final token = await _authService.login(email, password);
+      await _authService.login(email, password);
+      _isLoggedIn = true;
+      notifyListeners();
+    } catch (e) {
+      _isLoggedIn = false;
+      notifyListeners();
+      rethrow;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 
-      _accessToken = token;
-      await _storage.write(key: 'accessToken', value: token);
+  Future<bool> reissueToken() async {
+    try {
+      final refreshToken = await _storage.read(key: 'refreshToken');
 
+      if (refreshToken == null) {
+        if (kDebugMode) print("AuthProvider: 리프레시 토큰이 없어 갱신 불가");
+        await logout();
+        return false;
+      }
+
+      await _authService.reissueToken(refreshToken);
+
+      _isAuthenticated = true;
       notifyListeners();
       return true;
-    } catch(e) {
-      debugPrint('로그인 오류: $e');
-      return false;
-    }
-  }
 
-  Future<bool> signup(String email, String password, String nickname, String verificationToken,) async{
-    try{
-      await _authService.signup(email, password, nickname, verificationToken);
-      return true;
-    }catch (e) {
-      debugPrint('회원가입 오류: $e');
-      return false;
-    }
-  }
-
-  Future<void> tryAutoLogin() async {
-    try{
-      final token = await _authService.reissueToken();
-
-      _accessToken = token;
-      await _storage.write(key: 'accessToken', value: token);
-    }catch(e) {
-      debugPrint('로그인 오류: $e');
-      _accessToken = null;
-    }
-
-    notifyListeners();
-  }
-
-  Future<void> logout() async{
-    if (_accessToken != null) {
-      try {
-        await _authService.logout(_accessToken!);
-      } catch (e) {
-        if (kDebugMode) {
-          debugPrint('클라이언트 로그아웃은 성공, 서버 RT 무효화 요청 실패: $e');
-        }
-      }
-    }
-    try {
-      await _storage.deleteAll();
     } catch (e) {
-      if (kDebugMode) {
-        debugPrint('SecureStorage 삭제 중 오류 발생: $e');
-      }
+      if (kDebugMode) print("AuthProvider: 토큰 갱신 실패 ($e) -> 로그아웃 진행");
+      await logout();
+      return false;
     }
-    _accessToken = null;
+  }
+
+  Future<void> logout() async {
+    _isLoggedIn = false;
     notifyListeners();
   }
 }

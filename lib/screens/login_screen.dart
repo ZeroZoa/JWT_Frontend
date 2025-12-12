@@ -27,66 +27,46 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  Future<void> _handleLogin() async{
-    //사용자가 제출한 로그인폼 확인
-    if(!_formKey.currentState!.validate()){
+  Future<void> _handleLogin() async {
+    //유효성 검사
+    if (!_formKey.currentState!.validate()) {
       return;
     }
 
-    if(!mounted) return;
+    //로딩 시작 (기존 코드 버그 수정: false -> true)
     setState(() {
-      _isLoading = false;
+      _isLoading = true;
     });
 
-    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    try {
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      await authProvider.login(
+        _emailController.text.trim(),
+        _passwordController.text.trim(),
+      );
 
-    final success = await authProvider.login(
-      _emailController.text.trim(),
-      _passwordController.text.trim(),
-    );
-
-    if(!mounted) return;
-    setState(() {
-      _isLoading = false;
-    });
-
-    if(success) {
+      if (!mounted) return;
       context.go('/');
-    } else{
+
+    } catch (e) {
+      if (!mounted) return;
+
+      final errorMessage = e.toString().replaceAll('Exception: ', '');
+
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-        content: Text('로그인 실패: 이메일 또는 비밀번호를 확인해주세요.'),
-        backgroundColor: Colors.red,
+        SnackBar(
+          content: Text(errorMessage),
+          backgroundColor: Colors.red,
         ),
       );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
-
-  // Future<void> _handleLogin() async {
-  //   if (_formKey.currentState!.validate()) {
-  //     FocusScope.of(context).unfocus(); // 키보드 내리기
-  //
-  //     final authProvider = Provider.of<AuthProvider>(context, listen: false);
-  //
-  //     // 로그인 요청
-  //     final isSuccess = await authProvider.login(
-  //         _emailController.text,
-  //         _passwordController.text
-  //     );
-  //
-  //     if (isSuccess) {
-  //       if (!mounted) return;
-  //
-  //       context.go('/');
-  //
-  //     } else {
-  //       if (!mounted) return;
-  //       ScaffoldMessenger.of(context).showSnackBar(
-  //         const SnackBar(content: Text('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.')),
-  //       );
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
