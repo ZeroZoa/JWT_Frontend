@@ -19,7 +19,7 @@
     <tr>
       <td align="center"><b> 회원가입 </b></td>
       <td>
-         - 일반 사용자용 회원가입 (Frontend/Backend)<br/>
+         - 일반 사용자용 회원가입 <br/>
       </td>
     </tr>
     <tr>
@@ -31,7 +31,7 @@
     <tr>
       <td align="center"><b> 로그인 </b></td>
       <td>
-         - 일반 사용자의 Access Token, Refresh Token 발급 (Frontend/Backend)<br/>
+         - 일반 사용자의 Access Token, Refresh Token 발급 <br/>
       </td>
     </tr>
     <tr>
@@ -43,7 +43,7 @@
     <tr>
       <td align="center"><b> Access, Refresh Token </b></td>
       <td>
-         - Access Token이 만료되더라도 Redis서버에 저장된 Refresh Token을 검사후 Access Token 재발급 <br/>
+         - Access Token이 만료되더라도 Refresh Token을 검사후 Access Token 재발급 <br/>
       </td>
     </tr>
     <tr>
