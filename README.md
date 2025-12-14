@@ -35,13 +35,13 @@
       </td>
     </tr>
     <tr>
-      <td align="center"><b> Access Token, Refresh Token </b></td>
+      <td align="center"><b> Access, Refresh Token </b></td>
       <td>
          - Access Token이 만료되더라도 Redis서버에 저장된 Refresh Token을 검사후 Access Token 재발급 <br/>
       </td>
     </tr>
     <tr>
-      <td align="center"><b> JWT확인용 내프로필 조회 </b></td>
+      <td align="center"><b> 내 프로필 조회(권한 확인용) </b></td>
       <td>
          - Access Token이 만료 후 Refresh Token을 통해 재발급 -> 로그인 유지 (Frontend/Backend)<br/>
       </td>
