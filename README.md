@@ -23,9 +23,9 @@
 <div align="center">
   <h2 tabindex="-1" class="heading-element" dir="auto"> 상세 화면입니다. </h2>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 22" src="https://github.com/user-attachments/assets/3be623b2-a126-4c62-a9b2-ac1b94083a47" />
-  <h2 tabindex="-1" class="heading-element" dir="auto"> 로그인 </h2>
+  <p> 로그인 </p>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 18" src="https://github.com/user-attachments/assets/de8e77c1-71ee-48e8-a31d-16d746144211" />
-  <h2 tabindex="-1" class="heading-element" dir="auto"> 회원가입 </h2>
+  <p> 회원가입 </p>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 33" src="https://github.com/user-attachments/assets/f6cf0753-5754-46eb-844e-4fb46f85ffae" />
-  <h2 tabindex="-1" class="heading-element" dir="auto"> 메인화면 </h2>
+  <p> 메인화면 </p>
 </div>
