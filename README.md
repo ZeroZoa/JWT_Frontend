@@ -4,12 +4,12 @@
 
 <div align="center">
   <p>
-    JWT를 이용해 Access Token, Refresh Token을 구현하고 테스트하기 위한 화면입니다 
+    JWT를 이용해 Access Token, Refresh Token을 구현하고 테스트하기 위한 화면입니다!
   </p>
 </div>
 
 <div align="center">
-  <h2 tabindex="-1" class="heading-element" dir="auto"> 사용기술입니다. </h2>
+  <h2 tabindex="-1" class="heading-element" dir="auto"> 사용기술입니다! </h2>
   <img src="https://img.shields.io/badge/flutter-000000?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
 </div>
 
@@ -19,7 +19,7 @@
 </div>
 
 <div align="center">
-  <h2 tabindex="-1" class="heading-element" dir="auto"> 상세 화면입니다. </h2>
+  <h2 tabindex="-1" class="heading-element" dir="auto"> 상세 화면입니다! </h2>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 22" src="https://github.com/user-attachments/assets/3be623b2-a126-4c62-a9b2-ac1b94083a47" />
   <p> 로그인 </p>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 18" src="https://github.com/user-attachments/assets/de8e77c1-71ee-48e8-a31d-16d746144211" />
