@@ -11,8 +11,6 @@
 <div align="center">
   <h2 tabindex="-1" class="heading-element" dir="auto"> 사용기술입니다. </h2>
   <img src="https://img.shields.io/badge/flutter-000000?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
-  <img src="https://img.shields.io/badge/intellijidea-707070?style=for-the-badge&logo=intellijidea&logoColor=white" alt="intellijidea"/>
-  <img src="https://img.shields.io/badge/github-707070?style=for-the-badge&logo=github&logoColor=white" alt="Github"/>
 </div>
 
 <div align="center">
