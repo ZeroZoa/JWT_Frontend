@@ -49,7 +49,7 @@
     <tr>
       <td align="center"><b> 내 프로필 조회(권한 확인용) </b></td>
       <td>
-         - Access Token이 만료 후 Refresh Token을 통해 재발급 -> 로그인 유지 (Frontend/Backend)<br/>
+         - Access Token이 만료 후 Refresh Token을 통해 재발급 -> 로그인 유지 확인 <br/>
       </td>
     </tr>
   </tbody>
