@@ -8,6 +8,47 @@
   </p>
 </div>
 
+<table align="center" width="100%">
+  <thead>
+    <tr>
+      <th width="100" align="center"> 기능 </th>
+      <th width="650"align="center"> 설명 </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center"><b> 회원가입 </b></td>
+      <td>
+         - 일반 사용자용 회원가입 (Frontend/Backend)<br/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><b> 이메일 인증 </b></td>
+      <td>
+         - 일반 사용자 회원가입시 이메일 유효성 검사<br/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><b> 로그인 </b></td>
+      <td>
+         - 일반 사용자의 Access Token, Refresh Token 발급 (Frontend/Backend)<br/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><b> Access Token, Refresh Token </b></td>
+      <td>
+         - Access Token이 만료되더라도 Redis서버에 저장된 Refresh Token을 검사후 Access Token 재발급 <br/>
+      </td>
+    </tr>
+    <tr>
+      <td align="center"><b> JWT확인용 내프로필 조회 </b></td>
+      <td>
+         - Access Token이 만료 후 Refresh Token을 통해 재발급 -> 로그인 유지 (Frontend/Backend)<br/>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 <br></br>
 
 <div align="center">
