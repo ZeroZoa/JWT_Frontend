@@ -35,6 +35,12 @@
       </td>
     </tr>
     <tr>
+      <td align="center"><b> 비밀번호 찾기 -> 재설정 </b></td>
+      <td>
+         - 패스워드 분실시 이메일 인증 후 비밀번호 재설정<br/>
+      </td>
+    </tr>
+    <tr>
       <td align="center"><b> Access, Refresh Token </b></td>
       <td>
          - Access Token이 만료되더라도 Redis서버에 저장된 Refresh Token을 검사후 Access Token 재발급 <br/>
@@ -66,6 +72,8 @@
   <p> 로그인 </p>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 18" src="https://github.com/user-attachments/assets/de8e77c1-71ee-48e8-a31d-16d746144211" />
   <p> 회원가입 </p>
+  <img width="1135" height="867" alt="image" src="https://github.com/user-attachments/assets/c04178a4-bf4b-4b5a-8607-ea656de28304" />
+  <p> 비밀번호 찾기 -> 재설정 </p>
   <img width="1133" height="855" alt="스크린샷 2025-12-14 오후 6 06 33" src="https://github.com/user-attachments/assets/f6cf0753-5754-46eb-844e-4fb46f85ffae" />
   <p> 메인화면 </p>
 </div>
