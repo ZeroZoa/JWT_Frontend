@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Seungjun's%20Study Project&fontSize=50" alt="header" width="100%" />
-
+</div>
 <div align="center">
   <p>
     JWT를 이용해 Access Token, Refresh Token을 구현하고 테스트하기 위한 화면입니다 
