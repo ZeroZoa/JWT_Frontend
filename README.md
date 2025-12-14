@@ -35,7 +35,7 @@
       </td>
     </tr>
     <tr>
-      <td align="center"><b> 비밀번호 찾기 -> 재설정 </b></td>
+      <td align="center"><b> 비밀번호 찾기 및 재설정 </b></td>
       <td>
          - 패스워드 분실시 이메일 인증 후 비밀번호 재설정<br/>
       </td>
