@@ -11,7 +11,7 @@
 <table align="center" width="100%">
   <thead>
     <tr>
-      <th width="100" align="center"> 기능 </th>
+      <th width="200" align="center"> 기능 </th>
       <th width="650"align="center"> 설명 </th>
     </tr>
   </thead>
