@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Hola!%20Seungjun's%20GitHub&fontSize=50" alt="header" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=300&section=header&text=Seungjun's%20Study Project&fontSize=45" alt="header" width="100%" />
 </div>
 
 <div align="center">
@@ -11,6 +11,11 @@
 <div align="center">
   <h2 tabindex="-1" class="heading-element" dir="auto">Skills & Tools</h2>
   <img src="https://img.shields.io/badge/flutter-000000?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
+  <img src="https://img.shields.io/badge/intellijidea-707070?style=for-the-badge&logo=intellijidea&logoColor=white" alt="intellijidea"/>
+  <img src="https://img.shields.io/badge/github-707070?style=for-the-badge&logo=github&logoColor=white" alt="Github"/>
+</div>
+
+<div align="center">
   <img src="https://img.shields.io/badge/intellijidea-707070?style=for-the-badge&logo=intellijidea&logoColor=white" alt="intellijidea"/>
   <img src="https://img.shields.io/badge/github-707070?style=for-the-badge&logo=github&logoColor=white" alt="Github"/>
 </div>
