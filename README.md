@@ -8,6 +8,8 @@
   </p>
 </div>
 
+<br></br>
+
 <div align="center">
   <h2 tabindex="-1" class="heading-element" dir="auto"> 사용기술입니다! </h2>
   <img src="https://img.shields.io/badge/flutter-000000?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter"/>
