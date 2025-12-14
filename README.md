@@ -25,31 +25,31 @@
     <tr>
       <td align="center"><b> 이메일 인증 </b></td>
       <td>
-         - 일반 사용자 회원가입시 이메일 유효성 검사<br/>
+          일반 사용자 회원가입시 이메일 유효성 검사<br/>
       </td>
     </tr>
     <tr>
       <td align="center"><b> 로그인 </b></td>
       <td>
-         - 일반 사용자의 Access Token, Refresh Token 발급 <br/>
+          일반 사용자의 Access Token, Refresh Token 발급 <br/>
       </td>
     </tr>
     <tr>
       <td align="center"><b> 비밀번호 찾기 및 재설정 </b></td>
       <td>
-         - 패스워드 분실시 이메일 인증 후 비밀번호 재설정<br/>
+          패스워드 분실시 이메일 인증 후 비밀번호 재설정<br/>
       </td>
     </tr>
     <tr>
       <td align="center"><b> Access, Refresh Token </b></td>
       <td>
-         - Access Token이 만료되더라도 Refresh Token을 검사후 Access Token 재발급 <br/>
+          Access Token이 만료되더라도 Refresh Token을 검사후 Access Token 재발급 <br/>
       </td>
     </tr>
     <tr>
       <td align="center"><b> 내 프로필 조회(권한 확인용) </b></td>
       <td>
-         - Access Token이 만료 후 Refresh Token을 통해 재발급 -> 로그인 유지 확인 <br/>
+          Access Token이 만료 후 Refresh Token을 통해 재발급 -> 로그인 유지 확인 <br/>
       </td>
     </tr>
   </tbody>
