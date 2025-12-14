@@ -58,8 +58,8 @@ class _SignupScreenState extends State<SignupScreen> {
       SnackBar(
         content: Text(msg),
         backgroundColor: isError ? Colors.redAccent : Colors.green,
-        behavior: SnackBarBehavior.floating, // 웹에서 더 보기 좋음
-        width: 400, // 웹에서 너무 넓지 않게
+        behavior: SnackBarBehavior.floating,
+        width: 400,
       ),
     );
   }
