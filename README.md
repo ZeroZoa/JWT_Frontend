@@ -19,7 +19,7 @@
     <tr>
       <td align="center"><b> 회원가입 </b></td>
       <td>
-          일반 사용자용 회원가입 <br/>
+          일반 사용자 회원가입 <br/>
       </td>
     </tr>
     <tr>
